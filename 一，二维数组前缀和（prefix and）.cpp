@@ -1,23 +1,23 @@
-//ÊäÈëÒ»¸ö³¤¶ÈÎª n µÄÕûÊýÐòÁÐ¡£
+//è¾“å…¥ä¸€ä¸ªé•¿åº¦ä¸º n çš„æ•´æ•°åºåˆ—ã€‚
 //
-//½ÓÏÂÀ´ÔÙÊäÈë m ¸öÑ¯ÎÊ£¬Ã¿¸öÑ¯ÎÊÊäÈëÒ»¶Ô l,r¡£
+//æŽ¥ä¸‹æ¥å†è¾“å…¥ m ä¸ªè¯¢é—®ï¼Œæ¯ä¸ªè¯¢é—®è¾“å…¥ä¸€å¯¹ l,rã€‚
 //
-//¶ÔÓÚÃ¿¸öÑ¯ÎÊ£¬Êä³öÔ­ÐòÁÐÖÐ´ÓµÚ l ¸öÊýµ½µÚ r ¸öÊýµÄºÍ¡£
+//å¯¹äºŽæ¯ä¸ªè¯¢é—®ï¼Œè¾“å‡ºåŽŸåºåˆ—ä¸­ä»Žç¬¬ l ä¸ªæ•°åˆ°ç¬¬ r ä¸ªæ•°çš„å’Œã€‚
 ////
-//ÊäÈë¸ñÊ½
-//µÚÒ»ÐÐ°üº¬Á½¸öÕûÊý n ºÍ m¡£
+//è¾“å…¥æ ¼å¼
+//ç¬¬ä¸€è¡ŒåŒ…å«ä¸¤ä¸ªæ•´æ•° n å’Œ mã€‚
 //
-//µÚ¶þÐÐ°üº¬ n ¸öÕûÊý£¬±íÊ¾ÕûÊýÊýÁÐ¡£
+//ç¬¬äºŒè¡ŒåŒ…å« n ä¸ªæ•´æ•°ï¼Œè¡¨ç¤ºæ•´æ•°æ•°åˆ—ã€‚
 //
-//½ÓÏÂÀ´ m ÐÐ£¬Ã¿ÐÐ°üº¬Á½¸öÕûÊý l ºÍ r£¬±íÊ¾Ò»¸öÑ¯ÎÊµÄÇø¼ä·¶Î§¡£
+//æŽ¥ä¸‹æ¥ m è¡Œï¼Œæ¯è¡ŒåŒ…å«ä¸¤ä¸ªæ•´æ•° l å’Œ rï¼Œè¡¨ç¤ºä¸€ä¸ªè¯¢é—®çš„åŒºé—´èŒƒå›´ã€‚
 //
-//Êä³ö¸ñÊ½
-//¹² m ÐÐ£¬Ã¿ÐÐÊä³öÒ»¸öÑ¯ÎÊµÄ½á¹û¡£
+//è¾“å‡ºæ ¼å¼
+//å…± m è¡Œï¼Œæ¯è¡Œè¾“å‡ºä¸€ä¸ªè¯¢é—®çš„ç»“æžœã€‚
 //
-//Êý¾Ý·¶Î§
-//1¡Ül¡Ür¡Ün,
-//1¡Ün,m¡Ü100000,
-//-1000¡ÜÊýÁÐÖÐÔªËØµÄÖµ¡Ü1000
+//æ•°æ®èŒƒå›´
+//1â‰¤lâ‰¤râ‰¤n,
+//1â‰¤n,mâ‰¤100000,
+//-1000â‰¤æ•°åˆ—ä¸­å…ƒç´ çš„å€¼â‰¤1000
 
 #include <iostream>
 
@@ -36,26 +36,29 @@ int main()
     }
     return 0;
 }
-//¶þÎ¬Êý×éÇ°×ººÍ£º
+//äºŒç»´æ•°ç»„å‰ç¼€å’Œï¼š
 #include <iostream>
 
 using namespace std;
-const int N=101;
-int sum[N][N],a[N][N],x,y,l,r,L,R;
+const int N=1001;
+int sum[N][N],a[N][N],x,y,m,x1,x2,y1,y2;
 int main()
 {
-	scanf("%d%d%d%d%d%d",&x,&y,&l,&r,&L,&R);  //x<=l<=r<=L<=R<=y
+	scanf("%d%d%d",&x,&y,&m);  //x<=l<=r<=L<=R<=y
 	for(int i=1;i<=x;i++){
 		for(int j=1;j<=y;j++){
 			scanf("%d",&a[i][j]);
 		}
 	}
-		for(int i=1;i<=x;i++){
+	for(int i=1;i<=x;i++){
 			for(int j=1;j<=y;j++){
 				sum[i][j]=sum[i-1][j]+sum[i][j-1]-sum[i-1][j-1]+a[i][j];
 			}
 		}
-		printf("%d\n",sum[L][R]-sum[l][r-1]);
+	while(m--){
+	scanf("%d%d%d%d",&x1,&y1,&x2,&y2);
+		printf("%d\n",sum[x2][y2] - sum[x1 - 1][y2] - sum[x2][y1 - 1] + sum[x1 - 1][y1 - 1]);
+	}
 	return 0;
 }
- 
+
